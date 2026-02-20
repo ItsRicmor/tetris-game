@@ -56,64 +56,66 @@ const TetrisClientContent = () => {
 
   if (isMobile) {
     return (
-      <div className={`min-h-screen ${colors.bg} flex flex-col p-2`}>
-        <div className="flex-1 flex flex-col items-center justify-center gap-2">
-          <div className="w-full max-w-md">
-            <div className="flex gap-1.5 mb-2">
-              <div className={`${colors.card} rounded-md p-2 border ${colors.border} flex-1`}>
-                <div className="flex items-center justify-between">
-                  <span className={`text-xs ${colors.textSecondary}`}>Hold</span>
-                  <span className={`text-base font-semibold ${colors.text}`}>{snap.hold ?? "—"}</span>
-                </div>
-              </div>
-              <div className={`${colors.card} rounded-md p-2 border ${colors.border} flex-1`}>
-                <div className="flex items-center justify-between">
-                  <span className={`text-xs ${colors.textSecondary}`}>Score</span>
-                  <span className={`text-sm font-semibold ${colors.text}`}>{snap.score}</span>
-                </div>
-              </div>
-              <div className={`${colors.card} rounded-md p-2 border ${colors.border} flex-1`}>
-                <div className="flex items-center justify-between">
-                  <span className={`text-xs ${colors.textSecondary}`}>Level</span>
-                  <span className={`text-sm font-semibold ${colors.text}`}>{snap.level}</span>
-                </div>
+      <div className={`h-screen ${colors.bg} flex flex-col`}>
+        <div className="p-2 pb-0">
+          <div className="flex gap-1.5 mb-1.5">
+            <div className={`${colors.card} rounded-md p-2 border ${colors.border} flex-1`}>
+              <div className="flex items-center justify-between">
+                <span className={`text-xs ${colors.textSecondary}`}>Hold</span>
+                <span className={`text-base font-semibold ${colors.text}`}>{snap.hold ?? "—"}</span>
               </div>
             </div>
-            <div className="flex gap-1.5">
-              <div className={`${colors.card} rounded-md p-2 border ${colors.border} flex-1`}>
-                <div className="flex items-center justify-between">
-                  <span className={`text-xs ${colors.textSecondary}`}>Lines</span>
-                  <span className={`text-sm font-semibold ${colors.text}`}>{snap.lines}</span>
-                </div>
+            <div className={`${colors.card} rounded-md p-2 border ${colors.border} flex-1`}>
+              <div className="flex items-center justify-between">
+                <span className={`text-xs ${colors.textSecondary}`}>Score</span>
+                <span className={`text-sm font-semibold ${colors.text}`}>{snap.score}</span>
               </div>
-              <div className={`${colors.card} rounded-md p-2 border ${colors.border} flex-[2]`}>
-                <p className={`text-xs ${colors.textSecondary} mb-0.5`}>Next</p>
-                <div className={`flex gap-1.5 ${colors.text} text-xs font-medium`}>
-                  {snap.next.slice(0, 5).map((t, idx) => (
-                    <span key={`${t}-${idx}`}>{t}</span>
-                  ))}
-                </div>
+            </div>
+            <div className={`${colors.card} rounded-md p-2 border ${colors.border} flex-1`}>
+              <div className="flex items-center justify-between">
+                <span className={`text-xs ${colors.textSecondary}`}>Level</span>
+                <span className={`text-sm font-semibold ${colors.text}`}>{snap.level}</span>
               </div>
-              <button
-                onClick={toggleFullscreen}
-                className={`${colors.card} rounded-md p-2 border ${colors.border} active:scale-95 transition-transform`}
-              >
-                <svg className={`w-5 h-5 ${colors.text}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {isFullscreen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                  )}
-                </svg>
-              </button>
             </div>
           </div>
-
-          <Board snap={snap} />
-          <GameStatus status={snap.status} />
+          <div className="flex gap-1.5">
+            <div className={`${colors.card} rounded-md p-2 border ${colors.border} flex-1`}>
+              <div className="flex items-center justify-between">
+                <span className={`text-xs ${colors.textSecondary}`}>Lines</span>
+                <span className={`text-sm font-semibold ${colors.text}`}>{snap.lines}</span>
+              </div>
+            </div>
+            <div className={`${colors.card} rounded-md p-2 border ${colors.border} flex-[2]`}>
+              <p className={`text-xs ${colors.textSecondary} mb-0.5`}>Next</p>
+              <div className={`flex gap-1.5 ${colors.text} text-xs font-medium`}>
+                {snap.next.slice(0, 5).map((t, idx) => (
+                  <span key={`${t}-${idx}`}>{t}</span>
+                ))}
+              </div>
+            </div>
+            <button
+              onClick={toggleFullscreen}
+              className={`${colors.card} rounded-md p-2 border ${colors.border} active:scale-95 transition-transform`}
+            >
+              <svg className={`w-5 h-5 ${colors.text}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isFullscreen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
-        <div className="pb-2">
+        <div className="flex-1 flex items-center justify-center p-2 overflow-hidden">
+          <div className="flex flex-col items-center gap-2">
+            <Board snap={snap} />
+            <GameStatus status={snap.status} />
+          </div>
+        </div>
+
+        <div className="p-2 pt-0">
           <TouchControls game={game} onUpdate={updateSnapshot} />
         </div>
       </div>
