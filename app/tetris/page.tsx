@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import TetrisClient from "@/features/tetris/TetrisClient";
 
 export const metadata: Metadata = {
@@ -15,5 +16,13 @@ export const metadata: Metadata = {
 };
 
 export default function TetrisPage() {
-  return <TetrisClient />;
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 dark:from-[#0a0a0f] dark:via-[#0f0f1a] dark:to-[#0a0a0f] flex items-center justify-center">
+        <div className="text-gray-900 dark:text-white">Loading...</div>
+      </div>
+    }>
+      <TetrisClient />
+    </Suspense>
+  );
 }
