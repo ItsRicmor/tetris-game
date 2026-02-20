@@ -124,25 +124,86 @@ const TetrisClientContent = () => {
 
   return (
     <div className={`min-h-screen ${colors.bg} flex items-center justify-center p-6`}>
-      <div className="flex gap-6 items-center">
-        <div className="flex flex-col gap-3">
-          <HoldDisplay hold={snap.hold} canHold={snap.canHold} />
-          <Stats
-            status={snap.status}
-            score={snap.score}
-            level={snap.level}
-            lines={snap.lines}
-          />
+      <div className="flex gap-8 items-start">
+        <div className="flex flex-col gap-4 w-48">
+          <div className={`${colors.card} rounded-lg p-4 border ${colors.border}`}>
+            <h3 className={`text-xs font-medium ${colors.textSecondary} uppercase tracking-wider mb-3`}>Hold</h3>
+            <div className="text-center">
+              <span className={`text-3xl font-bold ${colors.text}`}>
+                {snap.hold ?? "—"}
+              </span>
+            </div>
+          </div>
+          
+          <div className={`${colors.card} rounded-lg p-4 border ${colors.border}`}>
+            <h3 className={`text-xs font-medium ${colors.textSecondary} uppercase tracking-wider mb-3`}>Stats</h3>
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <span className={`text-sm ${colors.textSecondary}`}>Score</span>
+                <span className={`text-base font-semibold ${colors.text}`}>{snap.score}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className={`text-sm ${colors.textSecondary}`}>Level</span>
+                <span className={`text-base font-semibold ${colors.text}`}>{snap.level}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className={`text-sm ${colors.textSecondary}`}>Lines</span>
+                <span className={`text-base font-semibold ${colors.text}`}>{snap.lines}</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-3 items-center">
+        <div className="flex flex-col gap-4 items-center">
           <Board snap={snap} />
           <GameStatus status={snap.status} />
         </div>
 
-        <div className="flex flex-col gap-3">
-          <NextQueue next={snap.next} />
-          <Controls />
+        <div className="flex flex-col gap-4 w-48">
+          <div className={`${colors.card} rounded-lg p-4 border ${colors.border}`}>
+            <h3 className={`text-xs font-medium ${colors.textSecondary} uppercase tracking-wider mb-3`}>Next</h3>
+            <ol className={`space-y-2 list-decimal list-inside ${colors.text}`}>
+              {snap.next.map((t, idx) => (
+                <li key={`${t}-${idx}`} className="text-base font-semibold">
+                  {t}
+                </li>
+              ))}
+            </ol>
+          </div>
+          
+          <div className={`${colors.card} rounded-lg p-4 border ${colors.border}`}>
+            <h3 className={`text-xs font-medium ${colors.textSecondary} uppercase tracking-wider mb-3`}>Controls</h3>
+            <div className={`space-y-1 text-sm ${colors.textSecondary}`}>
+              <div className="flex justify-between">
+                <span>← →</span>
+                <span>Move</span>
+              </div>
+              <div className="flex justify-between">
+                <span>↑ / Z</span>
+                <span>Rotate</span>
+              </div>
+              <div className="flex justify-between">
+                <span>↓</span>
+                <span>Soft Drop</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Space</span>
+                <span>Hard Drop</span>
+              </div>
+              <div className="flex justify-between">
+                <span>C</span>
+                <span>Hold</span>
+              </div>
+              <div className="flex justify-between">
+                <span>P</span>
+                <span>Pause</span>
+              </div>
+              <div className="flex justify-between">
+                <span>R</span>
+                <span>Restart</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

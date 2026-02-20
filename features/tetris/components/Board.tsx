@@ -29,7 +29,7 @@ export const Board = ({ snap }: BoardProps) => {
       cells.push(
         <div
           key={key}
-          className={`w-[calc((100vw-2rem)/10)] max-w-8 h-[calc((100vw-2rem)/10)] max-h-8 md:w-7 md:h-7 border ${
+          className={`w-[calc((100vw-2rem)/10)] max-w-8 h-[calc((100vw-2rem)/10)] max-h-8 md:w-8 md:h-8 border ${
             filled ? colors.block : colors.blockEmpty
           } ${colors.boardBorder}`}
         />
