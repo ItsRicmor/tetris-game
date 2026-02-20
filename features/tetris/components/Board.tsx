@@ -54,7 +54,7 @@ export const Board = memo(({ snap, isMobile = false }: BoardProps) => {
           key={key}
           className={`${
             isMobile 
-              ? 'w-[min(calc((100vw-2rem)/10),calc((100vh-20rem)/20))] h-[min(calc((100vw-2rem)/10),calc((100vh-20rem)/20))]'
+              ? 'w-[min(calc((100vw-2rem)/10),calc((100vh-18rem)/20))] h-[min(calc((100vw-2rem)/10),calc((100vh-18rem)/20))]'
               : 'w-8 h-8'
           } box-border ${
             isGhost 

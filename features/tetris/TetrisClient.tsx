@@ -75,7 +75,7 @@ const TetrisClientContent = () => {
           <div className="flex gap-2 mb-2">
             <button
               onClick={handleBackToHome}
-              className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 active:scale-95 transition-all"
+              className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 active:scale-95 transition-all flex-shrink-0 px-4"
               title="Back to Home"
             >
               <svg className="w-5 h-5 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
