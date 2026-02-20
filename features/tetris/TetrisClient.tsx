@@ -10,6 +10,7 @@ import { Stats } from "./components/Stats";
 import { HoldDisplay } from "./components/HoldDisplay";
 import { NextQueue } from "./components/NextQueue";
 import { Controls } from "./components/Controls";
+import { ThemeProvider, useTheme, themeConfig } from "./context/ThemeContext";
 
 const GAME_CONFIG = {
   width: 10,
@@ -22,7 +23,9 @@ const GAME_CONFIG = {
   fallIntervalCapMs: 100,
 } as const;
 
-const TetrisClient = () => {
+const TetrisClientContent = () => {
+  const { theme } = useTheme();
+  const colors = themeConfig[theme];
   const [mounted, setMounted] = useState(false);
   const game = useMemo(() => new Game(GAME_CONFIG), []);
   const [snap, setSnap] = useState(() => game.getSnapshot());
@@ -40,35 +43,48 @@ const TetrisClient = () => {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
-        <div className="text-white">Loading...</div>
+      <div className={`min-h-screen ${colors.bg} flex items-center justify-center`}>
+        <div className={colors.text}>Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
-      <div className="w-full">
-        <div className="flex flex-col lg:flex-row gap-6 items-start justify-center">
-          <div className="flex flex-col gap-4">
-            <Controls />
-            <Board snap={snap} />
-            <GameStatus status={snap.status} />
-          </div>
+    <div className={`min-h-screen ${colors.bg} flex items-center justify-center p-3 sm:p-4`}>
+      <div className="w-full max-w-6xl">
+        <div className="flex flex-col gap-3 sm:gap-4 items-center justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 w-full justify-center items-start">
+            <div className="flex gap-2 w-full sm:w-auto justify-between sm:flex-col sm:order-1">
+              <HoldDisplay hold={snap.hold} canHold={snap.canHold} />
+              <Stats
+                status={snap.status}
+                score={snap.score}
+                level={snap.level}
+                lines={snap.lines}
+              />
+            </div>
 
-          <div className="flex flex-col gap-4 w-full lg:w-64">
-            <Stats
-              status={snap.status}
-              score={snap.score}
-              level={snap.level}
-              lines={snap.lines}
-            />
-            <HoldDisplay hold={snap.hold} canHold={snap.canHold} />
-            <NextQueue next={snap.next} />
+            <div className="flex flex-col gap-2 items-center sm:order-2">
+              <Board snap={snap} />
+              <GameStatus status={snap.status} />
+            </div>
+
+            <div className="flex gap-2 w-full sm:w-auto justify-between sm:flex-col sm:order-3">
+              <NextQueue next={snap.next} />
+              <Controls />
+            </div>
           </div>
         </div>
       </div>
     </div>
+  );
+};
+
+const TetrisClient = () => {
+  return (
+    <ThemeProvider>
+      <TetrisClientContent />
+    </ThemeProvider>
   );
 };
 

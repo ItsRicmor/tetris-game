@@ -1,11 +1,14 @@
 import { useMemo } from "react";
 import type { GameSnapshot } from "@/packages/tetris-engine/src";
+import { useTheme, themeConfig } from "../context/ThemeContext";
 
 interface BoardProps {
   snap: GameSnapshot;
 }
 
 export const Board = ({ snap }: BoardProps) => {
+  const { theme } = useTheme();
+  const colors = themeConfig[theme];
   const { width, height, hiddenRows } = snap;
 
   const activeSet = useMemo(() => {
@@ -26,9 +29,9 @@ export const Board = ({ snap }: BoardProps) => {
       cells.push(
         <div
           key={key}
-          className={`w-6 h-6 border border-gray-800 ${
-            filled ? "bg-cyan-500" : "bg-gray-900"
-          }`}
+          className={`w-5 h-5 sm:w-6 sm:h-6 border ${
+            filled ? colors.block : colors.blockEmpty
+          } ${colors.boardBorder}`}
         />
       );
     }
@@ -40,7 +43,7 @@ export const Board = ({ snap }: BoardProps) => {
   }
 
   return (
-    <div className="inline-block bg-black p-2 rounded-lg shadow-2xl border-2 border-gray-700">
+    <div className={`inline-block ${colors.boardBg} p-1 rounded-md border ${colors.boardBorder}`}>
       {rows}
     </div>
   );

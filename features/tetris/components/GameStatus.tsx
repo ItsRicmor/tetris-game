@@ -1,20 +1,27 @@
+import { useTheme, themeConfig } from "../context/ThemeContext";
+
 interface GameStatusProps {
   status: "Running" | "Paused" | "GameOver";
 }
 
 export const GameStatus = ({ status }: GameStatusProps) => {
+  const { theme } = useTheme();
+  const colors = themeConfig[theme];
+
   if (status === "Running") return null;
 
   return (
-    <div className="mt-4 text-center">
+    <div className="text-center">
       {status === "GameOver" && (
-        <div className="px-4 py-2 bg-red-500/20 border border-red-500 rounded-lg text-red-400 font-semibold">
-          Game Over — press R to restart
+        <div className={`px-4 py-2 ${colors.card} border ${colors.border} rounded-md`}>
+          <p className={`text-sm font-medium ${colors.text}`}>Game Over</p>
+          <p className={`text-xs ${colors.textSecondary} mt-1`}>Press R to restart</p>
         </div>
       )}
       {status === "Paused" && (
-        <div className="px-4 py-2 bg-yellow-500/20 border border-yellow-500 rounded-lg text-yellow-400 font-semibold">
-          Paused — press P to resume
+        <div className={`px-4 py-2 ${colors.card} border ${colors.border} rounded-md`}>
+          <p className={`text-sm font-medium ${colors.text}`}>Paused</p>
+          <p className={`text-xs ${colors.textSecondary} mt-1`}>Press P to resume</p>
         </div>
       )}
     </div>

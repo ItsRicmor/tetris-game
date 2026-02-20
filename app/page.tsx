@@ -2,37 +2,45 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-      <div className="text-center space-y-8 px-4">
-        <div className="space-y-4">
-          <h1 className="text-6xl font-bold text-white tracking-tight">
-            Tetris Game
-          </h1>
-          <p className="text-xl text-gray-400 max-w-md mx-auto">
-            Classic block-stacking puzzle game built with Next.js
-          </p>
-        </div>
+    <main className="min-h-screen bg-white dark:bg-[#0a0a0f] flex items-center justify-center px-4">
+      <div className="max-w-2xl w-full">
+        <div className="space-y-8">
+          <div className="space-y-3">
+            <h1 className="text-5xl font-bold text-gray-900 dark:text-white">
+              Tetris
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+              Classic block-stacking puzzle game. Clean, minimal, fast.
+            </p>
+          </div>
 
-        <div className="pt-4">
-          <Link
-            href="/tetris"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-          >
-            <span>Play Tetris</span>
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <div className="flex gap-4">
+            <Link
+              href="/tetris"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium rounded-md hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
-              />
-            </svg>
-          </Link>
+              Play Game
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
+          </div>
+
+          <div className="pt-8 border-t border-gray-200 dark:border-gray-800">
+            <p className="text-sm text-gray-500 dark:text-gray-600">
+              Built with Next.js, TypeScript, and Tailwind CSS
+            </p>
+          </div>
         </div>
       </div>
     </main>
