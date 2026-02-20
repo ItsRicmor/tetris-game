@@ -4,9 +4,10 @@ import { useTheme, themeConfig, TETROMINO_COLORS } from "../context/ThemeContext
 
 interface BoardProps {
   snap: GameSnapshot;
+  isMobile?: boolean;
 }
 
-export const Board = memo(({ snap }: BoardProps) => {
+export const Board = memo(({ snap, isMobile = false }: BoardProps) => {
   const { theme } = useTheme();
   const colors = themeConfig[theme];
   const { width, height, hiddenRows } = snap;
@@ -51,7 +52,11 @@ export const Board = memo(({ snap }: BoardProps) => {
       cells.push(
         <div
           key={key}
-          className={`w-[calc((100vw-2rem)/10)] max-w-8 h-[calc((100vw-2rem)/10)] max-h-8 md:w-8 md:h-8 box-border ${
+          className={`${
+            isMobile 
+              ? 'w-[min(calc((100vw-2rem)/10),calc((100vh-16rem)/20))] h-[min(calc((100vw-2rem)/10),calc((100vh-16rem)/20))]'
+              : 'w-8 h-8'
+          } box-border ${
             isGhost 
               ? `border-2 border-dashed ${ghostColor.replace('bg-', 'border-')} opacity-60`
               : filled 

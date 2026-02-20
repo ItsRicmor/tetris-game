@@ -129,9 +129,11 @@ const TetrisClientContent = () => {
           </div>
         </div>
 
-        <div className="flex-1 flex items-center justify-center py-4 px-3 overflow-hidden">
-          <div className="flex flex-col items-center gap-3">
-            <Board snap={snap} />
+        <div className="flex-1 flex items-center justify-center py-4 px-3 overflow-hidden min-h-0">
+          <div className="flex flex-col items-center gap-3 h-full justify-center max-h-full">
+            <div className="flex-shrink min-h-0">
+              <Board snap={snap} isMobile={true} />
+            </div>
             <GameStatus status={snap.status} />
           </div>
         </div>
@@ -186,7 +188,7 @@ const TetrisClientContent = () => {
         </div>
 
         <div className="flex flex-col gap-4 items-center py-4">
-          <Board snap={snap} />
+          <Board snap={snap} isMobile={false} />
           <GameStatus status={snap.status} />
         </div>
 
