@@ -7,6 +7,7 @@ import { useEffect, Suspense } from "react";
 function HomeContent() {
   const searchParams = useSearchParams();
   const theme = searchParams.get("theme");
+  const hideFooter = searchParams.get("hideFooter") === "true";
   const tetrisHref = theme ? `/tetris?theme=${theme}` : "/tetris";
 
   useEffect(() => {
@@ -79,20 +80,22 @@ function HomeContent() {
         </div>
       </div>
 
-      <footer className="py-6 sm:py-8 px-4 border-t border-gray-200 dark:border-gray-800">
-        <div className="max-w-2xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-              Built with Next.js, TypeScript & Tailwind CSS
-            </p>
-            <div className="flex gap-4 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-              <span>⌨️ Keyboard</span>
-              <span>👆 Touch</span>
-              <span>🎯 Fullscreen</span>
+      {!hideFooter && (
+        <footer className="py-6 sm:py-8 px-4 border-t border-gray-200 dark:border-gray-800">
+          <div className="max-w-2xl mx-auto">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                Built with Next.js, TypeScript & Tailwind CSS
+              </p>
+              <div className="flex gap-4 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                <span>⌨️ Keyboard</span>
+                <span>👆 Touch</span>
+                <span>🎯 Fullscreen</span>
+              </div>
             </div>
           </div>
-        </div>
-      </footer>
+        </footer>
+      )}
     </main>
   );
 }
