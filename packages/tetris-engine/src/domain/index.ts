@@ -4,3 +4,4 @@ export * from "./pieces";
 export * from "./rotation";
 export * from "./movement";
 export * from "./random";
+export * from "./game";
