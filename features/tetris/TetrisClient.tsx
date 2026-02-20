@@ -96,19 +96,21 @@ const TetrisClientContent = () => {
                 </div>
               </div>
             </div>
-            <button
-              onClick={toggleFullscreen}
-              className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 active:scale-95 transition-all w-16"
-              title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
-            >
-              <svg className="w-5 h-5 text-gray-900 dark:text-white mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isFullscreen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                )}
-              </svg>
-            </button>
+            {isFullscreenSupported && (
+              <button
+                onClick={toggleFullscreen}
+                className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 active:scale-95 transition-all w-16"
+                title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+              >
+                <svg className="w-5 h-5 text-gray-900 dark:text-white mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {isFullscreen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                  )}
+                </svg>
+              </button>
+            )}
           </div>
 
           <div className="flex-1 flex overflow-hidden min-h-0 gap-2">
