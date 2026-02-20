@@ -71,75 +71,75 @@ const TetrisClientContent = () => {
   if (isMobile) {
     return (
       <div className="h-screen bg-gradient-to-br from-white to-gray-50 dark:from-[#0a0a0f] dark:via-[#0f0f1a] dark:to-[#0a0a0f] flex flex-col">
-        <div className="p-3 pb-0">
+        <div className="flex-1 flex flex-col px-3 pt-3 overflow-hidden min-h-0">
           <div className="flex gap-2 mb-2">
             <button
               onClick={handleBackToHome}
-              className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 active:scale-95 transition-all flex-shrink-0 px-4"
+              className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 active:scale-95 transition-all w-16"
               title="Back to Home"
             >
-              <svg className="w-5 h-5 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-gray-900 dark:text-white mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
             </button>
-            <div className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 flex-1">
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold">Lines</span>
-                <span className="text-sm font-bold text-gray-900 dark:text-white">{snap.lines}</span>
+            <div className="flex-1 flex items-center justify-center gap-2">
+              <div className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl px-3 py-2.5 border border-gray-200/50 dark:border-gray-700/50">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold">Score</span>
+                  <span className="text-sm font-bold text-gray-900 dark:text-white">{snap.score}</span>
+                </div>
+              </div>
+              <div className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl px-3 py-2.5 border border-gray-200/50 dark:border-gray-700/50">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold">Level</span>
+                  <span className="text-sm font-bold text-gray-900 dark:text-white">{snap.level}</span>
+                </div>
               </div>
             </div>
-            <div className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 flex-[2]">
-              <p className="text-xs text-gray-600 dark:text-gray-400 mb-1 font-semibold">Next</p>
-              <div className="flex gap-2 text-gray-900 dark:text-white text-xs font-bold">
-                {snap.next.slice(0, 5).map((t, idx) => (
-                  <span key={`${t}-${idx}`}>{t}</span>
-                ))}
-              </div>
-            </div>
-            {isFullscreenSupported && (
-              <button
-                onClick={toggleFullscreen}
-                className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 active:scale-95 transition-all"
-                title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
-              >
-                <svg className="w-5 h-5 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {isFullscreen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                  )}
-                </svg>
-              </button>
-            )}
+            <button
+              onClick={toggleFullscreen}
+              className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 active:scale-95 transition-all w-16"
+              title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+            >
+              <svg className="w-5 h-5 text-gray-900 dark:text-white mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isFullscreen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                )}
+              </svg>
+            </button>
           </div>
-          <div className="flex gap-2">
-            <div className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 flex-1">
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold">Hold</span>
-                <span className="text-lg font-bold text-gray-900 dark:text-white">{snap.hold ?? "—"}</span>
-              </div>
-            </div>
-            <div className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 flex-1">
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold">Score</span>
-                <span className="text-sm font-bold text-gray-900 dark:text-white">{snap.score}</span>
-              </div>
-            </div>
-            <div className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 flex-1">
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold">Level</span>
-                <span className="text-sm font-bold text-gray-900 dark:text-white">{snap.level}</span>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div className="flex-1 flex items-center justify-center py-4 px-3 overflow-hidden min-h-0">
-          <div className="flex flex-col items-center gap-3 h-full justify-center max-h-full">
-            <div className="flex-shrink min-h-0">
-              <Board snap={snap} isMobile={true} />
+          <div className="flex-1 flex overflow-hidden min-h-0 gap-2">
+            <div className="flex-1 flex items-center justify-center">
+              <div className="flex flex-col items-center gap-3 h-full justify-center max-h-full">
+                <div className="flex-shrink min-h-0">
+                  <Board snap={snap} isMobile={true} />
+                </div>
+                <GameStatus status={snap.status} onRestart={handleRestart} />
+              </div>
             </div>
-            <GameStatus status={snap.status} onRestart={handleRestart} />
+
+            <div className="flex flex-col gap-2 w-16">
+              <div className="h-11"></div>
+              <div className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2 border border-gray-200/50 dark:border-gray-700/50">
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-1 font-semibold text-center">Next</p>
+                <div className="flex flex-col gap-1 text-gray-900 dark:text-white text-sm font-bold text-center">
+                  {snap.next.slice(0, 5).map((t, idx) => (
+                    <span key={`${t}-${idx}`}>{t}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2 border border-gray-200/50 dark:border-gray-700/50">
+                <p className="text-xs text-gray-600 dark:text-gray-400 font-semibold text-center">Lines</p>
+                <p className="text-sm font-bold text-gray-900 dark:text-white text-center">{snap.lines}</p>
+              </div>
+              <div className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2 border border-gray-200/50 dark:border-gray-700/50">
+                <p className="text-xs text-gray-600 dark:text-gray-400 font-semibold text-center">Hold</p>
+                <p className="text-sm font-bold text-gray-900 dark:text-white text-center">{snap.hold ?? "—"}</p>
+              </div>
+            </div>
           </div>
         </div>
 
