@@ -31,7 +31,7 @@ const TetrisClientContent = () => {
   const { theme } = useTheme();
   const colors = themeConfig[theme];
   const isMobile = useIsMobile();
-  const { isFullscreen, toggleFullscreen } = useFullscreen();
+  const { isFullscreen, toggleFullscreen, isSupported: isFullscreenSupported } = useFullscreen();
   const [mounted, setMounted] = useState(false);
   const game = useMemo(() => new Game(GAME_CONFIG), []);
   const [snap, setSnap] = useState(() => game.getSnapshot());
@@ -91,19 +91,21 @@ const TetrisClientContent = () => {
                 ))}
               </div>
             </div>
-            <button
-              onClick={toggleFullscreen}
-              className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 active:scale-95 transition-all"
-              title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
-            >
-              <svg className="w-5 h-5 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isFullscreen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                )}
-              </svg>
-            </button>
+            {isFullscreenSupported && (
+              <button
+                onClick={toggleFullscreen}
+                className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 active:scale-95 transition-all"
+                title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+              >
+                <svg className="w-5 h-5 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {isFullscreen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                  )}
+                </svg>
+              </button>
+            )}
           </div>
           <div className="flex gap-2">
             <div className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-2.5 border border-gray-200/50 dark:border-gray-700/50 flex-1">
@@ -189,19 +191,21 @@ const TetrisClientContent = () => {
         </div>
 
         <div className="flex flex-col gap-5 w-56">
-          <button
-            onClick={toggleFullscreen}
-            className="bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-500 dark:to-blue-500 hover:from-purple-700 hover:to-blue-700 dark:hover:from-purple-600 dark:hover:to-blue-600 rounded-xl p-3 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-            title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
-          >
-            <svg className="w-5 h-5 text-white mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isFullscreen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-              )}
-            </svg>
-          </button>
+          {isFullscreenSupported && (
+            <button
+              onClick={toggleFullscreen}
+              className="bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-500 dark:to-blue-500 hover:from-purple-700 hover:to-blue-700 dark:hover:from-purple-600 dark:hover:to-blue-600 rounded-xl p-3 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+              title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+            >
+              <svg className="w-5 h-5 text-white mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isFullscreen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                )}
+              </svg>
+            </button>
+          )}
           
           <div className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl p-5 border border-gray-200/50 dark:border-gray-700/50">
             <h3 className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-4">Next Pieces</h3>
