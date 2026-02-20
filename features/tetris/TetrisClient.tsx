@@ -82,7 +82,7 @@ const TetrisClientContent = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
             </button>
-            <div className="flex-1 flex items-center justify-center gap-2">
+            <div className={`flex-1 flex items-center gap-2 ${isFullscreenSupported ? 'justify-center' : 'justify-end'}`}>
               <div className="bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-xl px-3 py-2.5 border border-gray-200/50 dark:border-gray-700/50">
                 <div className="flex items-center gap-2">
                   <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold">Score</span>
