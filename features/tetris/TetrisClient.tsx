@@ -124,6 +124,19 @@ const TetrisClientContent = () => {
 
   return (
     <div className={`min-h-screen ${colors.bg} flex items-center justify-center p-6`}>
+      <button
+        onClick={toggleFullscreen}
+        className={`fixed top-6 right-6 ${colors.card} rounded-lg p-3 border ${colors.border} hover:bg-opacity-80 transition-all z-10`}
+        title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+      >
+        <svg className={`w-5 h-5 ${colors.text}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {isFullscreen ? (
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          ) : (
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+          )}
+        </svg>
+      </button>
       <div className="flex gap-8 items-start">
         <div className="flex flex-col gap-4 w-48">
           <div className={`${colors.card} rounded-lg p-4 border ${colors.border}`}>
