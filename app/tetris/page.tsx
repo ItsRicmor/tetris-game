@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Play Tetris - Classic Block Puzzle Game",
     description: "Play Tetris online for free. Mobile-friendly with touch controls.",
+    images: ["/api/og"],
+  },
+  twitter: {
+    images: ["/api/og"],
   },
 };
 

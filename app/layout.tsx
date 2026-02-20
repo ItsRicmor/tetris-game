@@ -13,26 +13,44 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'),
   title: "Tetris Game - Classic Block Puzzle Game",
   description: "Play the classic Tetris block-stacking puzzle game. Built with Next.js, TypeScript, and modern web technologies. Features responsive design, touch controls, and theme support.",
   keywords: ["tetris", "puzzle game", "block game", "classic game", "web game", "next.js", "typescript"],
   authors: [{ name: "Ricardo Morales" }],
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icon', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: '/apple-icon',
+  },
   openGraph: {
     title: "Tetris Game - Classic Block Puzzle Game",
     description: "Play the classic Tetris block-stacking puzzle game online. Free, fast, and mobile-friendly.",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "Tetris Game",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Tetris Game - Classic Block Puzzle Game",
     description: "Play the classic Tetris block-stacking puzzle game online.",
+    images: ["/api/og"],
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
     { media: "(prefers-color-scheme: dark)", color: "#0a0a0f" },

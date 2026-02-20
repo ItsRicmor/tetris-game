@@ -6,19 +6,19 @@ A modern, responsive implementation of the classic Tetris block-stacking puzzle 
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8?style=flat-square&logo=tailwind-css)
 
-## ✨ Features
+## Features
 
-- **🎮 Classic Gameplay**: Authentic Tetris experience with all standard mechanics
-- **🎨 Color-Coded Pieces**: Each Tetromino type has a unique, consistent color
-- **👻 Ghost Piece**: Visual preview showing where pieces will land
-- **📱 Mobile-First Design**: Fully responsive with touch controls for mobile devices
-- **🎯 Fullscreen Mode**: Immersive gaming experience on any device
-- **🌓 Theme Support**: Light and dark themes matching portfolio aesthetic
-- **⌨️ Keyboard Controls**: Full keyboard support for desktop play
-- **🔄 Hold Mechanism**: Strategy-enhancing piece hold system
-- **📊 Real-time Stats**: Track score, level, lines cleared, and next pieces
+- **Classic Gameplay**: Authentic Tetris experience with all standard mechanics
+- **Color-Coded Pieces**: Each Tetromino type has a unique, consistent color
+- **Ghost Piece**: Visual preview showing where pieces will land
+- **Mobile-First Design**: Fully responsive with touch controls for mobile devices
+- **Fullscreen Mode**: Immersive gaming experience on any device
+- **Theme Support**: Light and dark themes matching portfolio aesthetic
+- **Keyboard Controls**: Full keyboard support for desktop play
+- **Hold Mechanism**: Strategy-enhancing piece hold system
+- **Real-time Stats**: Track score, level, lines cleared, and next pieces
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -45,7 +45,7 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) to see the application.
 
-## 🎮 How to Play
+## How to Play
 
 ### Desktop Controls
 
@@ -61,7 +61,7 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
 
 Touch-optimized button controls are provided on mobile devices for all game actions.
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 tetris-game/
@@ -99,7 +99,7 @@ tetris-game/
             └── snapshot.ts      # Game state snapshot types
 ```
 
-## 🎨 Architecture
+## Architecture
 
 ### Clean Architecture
 
@@ -117,7 +117,7 @@ The project follows clean architecture principles with clear separation of conce
 4. **Responsive Design**: Mobile-first approach with adaptive layouts
 5. **Type Safety**: Full TypeScript coverage with strict mode
 
-## 🎨 Theming
+## Theming
 
 The game supports light and dark themes that can be controlled via query parameters:
 
@@ -141,15 +141,14 @@ This allows seamless integration into iframes with matching themes.
 - **J (Blue)**: `#3b82f6` / `#60a5fa`
 - **L (Orange)**: `#f97316` / `#fb923c`
 
-## 📦 Technologies
+## Technologies
 
 - **Framework**: Next.js 16.1.6 (App Router)
 - **Language**: TypeScript 5
 - **Styling**: Tailwind CSS 3.4
 - **Testing**: Jest + React Testing Library
-- **Fonts**: Geist Sans & Geist Mono
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run tests
@@ -162,18 +161,12 @@ npm test -- --watch
 npm test -- --coverage
 ```
 
-## 📝 License
+## License
 
 This project is open source and available under the MIT License.
 
-## 👤 Author
+## Author
 
-**Ricardo Morales**
+**Ricardo Morataya**
 
 - Portfolio: [ricmor.dev](https://ricmor.dev)
-
-## 🙏 Acknowledgments
-
-- Classic Tetris gameplay mechanics
-- Next.js team for the amazing framework
-- Tailwind CSS for the utility-first CSS framework
