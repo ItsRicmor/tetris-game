@@ -2,11 +2,22 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
   const searchParams = useSearchParams();
   const theme = searchParams.get("theme");
   const tetrisHref = theme ? `/tetris?theme=${theme}` : "/tetris";
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    }
+  }, [theme]);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-white to-gray-50 dark:from-[#0a0a0f] dark:via-[#0f0f1a] dark:to-[#0a0a0f] flex flex-col">
@@ -39,19 +50,6 @@ export default function Home() {
                   <path d="M8 5v14l11-7z"/>
                 </svg>
                 Play Now
-                <svg
-                  className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2.5}
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
-                </svg>
               </Link>
             </div>
 
