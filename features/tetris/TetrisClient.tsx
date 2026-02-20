@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Game } from "@/packages/tetris-engine/src";
 import { useGameLoop } from "./hooks/useGameLoop";
 import { useKeyboardControls } from "./hooks/useKeyboardControls";
@@ -23,8 +23,13 @@ const GAME_CONFIG = {
 } as const;
 
 const TetrisClient = () => {
+  const [mounted, setMounted] = useState(false);
   const game = useMemo(() => new Game(GAME_CONFIG), []);
   const [snap, setSnap] = useState(() => game.getSnapshot());
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const updateSnapshot = useCallback(() => {
     setSnap(game.getSnapshot());
@@ -32,6 +37,14 @@ const TetrisClient = () => {
 
   useGameLoop(game, updateSnapshot);
   useKeyboardControls(game, snap.status, updateSnapshot);
+
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
+        <div className="text-white">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
