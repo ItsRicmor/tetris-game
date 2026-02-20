@@ -1,5 +1,5 @@
 import { Board, type BoardConfig } from "../board";
-import { filled, type TetrominoType } from "../types";
+import { filled, Point, type TetrominoType } from "../types";
 import { Piece } from "../pieces/piece";
 import { NextQueue } from "../random/next-queue";
 import { SevenBagGenerator } from "../random/seven-bag-generator";
@@ -348,6 +348,19 @@ export class Game {
             hold,
             canHold,
             next: [...this.queue.peek()],
+            ghostCells: this.computeGhostCells(),
         };
+    }
+
+    private computeGhostCells(): Point[] {
+        let ghost = this.active;
+
+        while (true) {
+            const next = this.move.tryMove(ghost, 0, 1, this.board);
+            if (next === ghost) break;
+            ghost = next;
+        }
+
+        return ghost.cells();
     }
 }

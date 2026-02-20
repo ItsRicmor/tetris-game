@@ -24,4 +24,5 @@ export interface GameSnapshot {
   canHold: boolean;
 
   next: TetrominoType[];
+  ghostCells: Point[];
 }
