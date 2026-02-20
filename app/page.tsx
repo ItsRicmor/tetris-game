@@ -1,6 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 export default function Home() {
+  const searchParams = useSearchParams();
+  const theme = searchParams.get("theme");
+  const tetrisHref = theme ? `/tetris?theme=${theme}` : "/tetris";
+
   return (
     <main className="min-h-screen bg-white dark:bg-[#0a0a0f] flex items-center justify-center px-4">
       <div className="max-w-2xl w-full">
@@ -16,7 +23,7 @@ export default function Home() {
 
           <div className="flex gap-4">
             <Link
-              href="/tetris"
+              href={tetrisHref}
               className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium rounded-md hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
             >
               Play Game
