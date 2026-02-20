@@ -39,6 +39,16 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
+export const TETROMINO_COLORS = {
+  I: { light: "bg-cyan-500", dark: "bg-cyan-400" },
+  O: { light: "bg-yellow-500", dark: "bg-yellow-400" },
+  T: { light: "bg-purple-500", dark: "bg-purple-400" },
+  S: { light: "bg-green-500", dark: "bg-green-400" },
+  Z: { light: "bg-red-500", dark: "bg-red-400" },
+  J: { light: "bg-blue-500", dark: "bg-blue-400" },
+  L: { light: "bg-orange-500", dark: "bg-orange-400" },
+} as const;
+
 export const themeConfig = {
   light: {
     bg: "bg-white",

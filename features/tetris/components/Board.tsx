@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import type { GameSnapshot } from "@/packages/tetris-engine/src";
-import { useTheme, themeConfig } from "../context/ThemeContext";
+import { useTheme, themeConfig, TETROMINO_COLORS } from "../context/ThemeContext";
 
 interface BoardProps {
   snap: GameSnapshot;
@@ -17,6 +17,17 @@ export const Board = ({ snap }: BoardProps) => {
     return s;
   }, [snap.active.cells]);
 
+  const getBlockColor = (x: number, y: number, isActive: boolean) => {
+    if (isActive) {
+      return TETROMINO_COLORS[snap.active.type][theme];
+    }
+    const cell = snap.board[y][x];
+    if (cell.kind === "filled") {
+      return TETROMINO_COLORS[cell.type][theme];
+    }
+    return colors.blockEmpty;
+  };
+
   const rows = [];
   for (let y = hiddenRows; y < height; y++) {
     const cells = [];
@@ -30,7 +41,7 @@ export const Board = ({ snap }: BoardProps) => {
         <div
           key={key}
           className={`w-[calc((100vw-2rem)/10)] max-w-8 h-[calc((100vw-2rem)/10)] max-h-8 md:w-8 md:h-8 border ${
-            filled ? colors.block : colors.blockEmpty
+            filled ? getBlockColor(x, y, isActive) : colors.blockEmpty
           } ${colors.boardBorder}`}
         />
       );
