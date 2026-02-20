@@ -4,12 +4,14 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Game } from "@/packages/tetris-engine/src";
 import { useGameLoop } from "./hooks/useGameLoop";
 import { useKeyboardControls } from "./hooks/useKeyboardControls";
+import { useIsMobile } from "./hooks/useIsMobile";
 import { Board } from "./components/Board";
 import { GameStatus } from "./components/GameStatus";
 import { Stats } from "./components/Stats";
 import { HoldDisplay } from "./components/HoldDisplay";
 import { NextQueue } from "./components/NextQueue";
 import { Controls } from "./components/Controls";
+import { TouchControls } from "./components/TouchControls";
 import { ThemeProvider, useTheme, themeConfig } from "./context/ThemeContext";
 
 const GAME_CONFIG = {
@@ -26,6 +28,7 @@ const GAME_CONFIG = {
 const TetrisClientContent = () => {
   const { theme } = useTheme();
   const colors = themeConfig[theme];
+  const isMobile = useIsMobile();
   const [mounted, setMounted] = useState(false);
   const game = useMemo(() => new Game(GAME_CONFIG), []);
   const [snap, setSnap] = useState(() => game.getSnapshot());
@@ -49,31 +52,53 @@ const TetrisClientContent = () => {
     );
   }
 
-  return (
-    <div className={`min-h-screen ${colors.bg} flex items-center justify-center p-3 sm:p-4`}>
-      <div className="w-full max-w-6xl">
-        <div className="flex flex-col gap-3 sm:gap-4 items-center justify-center">
-          <div className="flex flex-col sm:flex-row gap-3 w-full justify-center items-start">
-            <div className="flex gap-2 w-full sm:w-auto justify-between sm:flex-col sm:order-1">
-              <HoldDisplay hold={snap.hold} canHold={snap.canHold} />
-              <Stats
-                status={snap.status}
-                score={snap.score}
-                level={snap.level}
-                lines={snap.lines}
-              />
-            </div>
-
-            <div className="flex flex-col gap-2 items-center sm:order-2">
-              <Board snap={snap} />
-              <GameStatus status={snap.status} />
-            </div>
-
-            <div className="flex gap-2 w-full sm:w-auto justify-between sm:flex-col sm:order-3">
-              <NextQueue next={snap.next} />
-              <Controls />
-            </div>
+  if (isMobile) {
+    return (
+      <div className={`min-h-screen ${colors.bg} flex flex-col p-3`}>
+        <div className="flex-1 flex flex-col items-center justify-center gap-3">
+          <div className="flex gap-2 w-full max-w-md">
+            <HoldDisplay hold={snap.hold} canHold={snap.canHold} />
+            <Stats
+              status={snap.status}
+              score={snap.score}
+              level={snap.level}
+              lines={snap.lines}
+            />
+            <NextQueue next={snap.next} />
           </div>
+
+          <Board snap={snap} />
+          <GameStatus status={snap.status} />
+        </div>
+
+        <div className="pb-safe">
+          <TouchControls game={game} onUpdate={updateSnapshot} />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`min-h-screen ${colors.bg} flex items-center justify-center p-6`}>
+      <div className="flex gap-6 items-center">
+        <div className="flex flex-col gap-3">
+          <HoldDisplay hold={snap.hold} canHold={snap.canHold} />
+          <Stats
+            status={snap.status}
+            score={snap.score}
+            level={snap.level}
+            lines={snap.lines}
+          />
+        </div>
+
+        <div className="flex flex-col gap-3 items-center">
+          <Board snap={snap} />
+          <GameStatus status={snap.status} />
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <NextQueue next={snap.next} />
+          <Controls />
         </div>
       </div>
     </div>
