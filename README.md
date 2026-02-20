@@ -2,10 +2,6 @@
 
 A modern, responsive implementation of the classic Tetris block-stacking puzzle game built with Next.js, TypeScript, and Tailwind CSS.
 
-![Tetris Game](https://img.shields.io/badge/Next.js-16.1.6-black?style=flat-square&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8?style=flat-square&logo=tailwind-css)
-
 ## Features
 
 - **Classic Gameplay**: Authentic Tetris experience with all standard mechanics
