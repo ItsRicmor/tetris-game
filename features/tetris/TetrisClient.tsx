@@ -52,6 +52,11 @@ const TetrisClientContent = () => {
     setSnap(game.getSnapshot());
   }, [game]);
 
+  const handleRestart = useCallback(() => {
+    game.dispatch({ type: "Restart" });
+    updateSnapshot();
+  }, [game, updateSnapshot]);
+
   useGameLoop(game, updateSnapshot);
   useKeyboardControls(game, snap.status, updateSnapshot);
 
@@ -134,7 +139,7 @@ const TetrisClientContent = () => {
             <div className="flex-shrink min-h-0">
               <Board snap={snap} isMobile={true} />
             </div>
-            <GameStatus status={snap.status} />
+            <GameStatus status={snap.status} onRestart={handleRestart} />
           </div>
         </div>
 
@@ -189,7 +194,7 @@ const TetrisClientContent = () => {
 
         <div className="flex flex-col gap-4 items-center py-4">
           <Board snap={snap} isMobile={false} />
-          <GameStatus status={snap.status} />
+          <GameStatus status={snap.status} onRestart={handleRestart} />
         </div>
 
         <div className="flex flex-col gap-5 w-56">
