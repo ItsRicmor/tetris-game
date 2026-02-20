@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { TetrominoType } from "@/packages/tetris-engine/src";
 import { useTheme, themeConfig } from "../context/ThemeContext";
 
@@ -6,7 +7,7 @@ interface HoldDisplayProps {
   canHold: boolean;
 }
 
-export const HoldDisplay = ({ hold, canHold }: HoldDisplayProps) => {
+export const HoldDisplay = memo(({ hold, canHold }: HoldDisplayProps) => {
   const { theme } = useTheme();
   const colors = themeConfig[theme];
 
@@ -20,4 +21,4 @@ export const HoldDisplay = ({ hold, canHold }: HoldDisplayProps) => {
       </div>
     </div>
   );
-}
+});

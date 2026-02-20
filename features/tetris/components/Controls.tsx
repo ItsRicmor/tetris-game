@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { useTheme, themeConfig } from "../context/ThemeContext";
 
-export const Controls = () => {
+export const Controls = memo(() => {
   const { theme } = useTheme();
   const colors = themeConfig[theme];
   return (
@@ -17,4 +18,4 @@ export const Controls = () => {
       </div>
     </div>
   );
-}
+});

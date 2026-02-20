@@ -1,10 +1,11 @@
+import { memo } from "react";
 import { useTheme, themeConfig } from "../context/ThemeContext";
 
 interface GameStatusProps {
   status: "Running" | "Paused" | "GameOver";
 }
 
-export const GameStatus = ({ status }: GameStatusProps) => {
+export const GameStatus = memo(({ status }: GameStatusProps) => {
   const { theme } = useTheme();
   const colors = themeConfig[theme];
 
@@ -26,4 +27,4 @@ export const GameStatus = ({ status }: GameStatusProps) => {
       )}
     </div>
   );
-}
+});

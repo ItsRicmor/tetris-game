@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, memo } from "react";
 import type { GameSnapshot } from "@/packages/tetris-engine/src";
 import { useTheme, themeConfig, TETROMINO_COLORS } from "../context/ThemeContext";
 
@@ -6,7 +6,7 @@ interface BoardProps {
   snap: GameSnapshot;
 }
 
-export const Board = ({ snap }: BoardProps) => {
+export const Board = memo(({ snap }: BoardProps) => {
   const { theme } = useTheme();
   const colors = themeConfig[theme];
   const { width, height, hiddenRows } = snap;
@@ -73,4 +73,4 @@ export const Board = ({ snap }: BoardProps) => {
       {rows}
     </div>
   );
-}
+});

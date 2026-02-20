@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { TetrominoType } from "@/packages/tetris-engine/src";
 import { useTheme, themeConfig } from "../context/ThemeContext";
 
@@ -5,7 +6,7 @@ interface NextQueueProps {
   next: readonly TetrominoType[];
 }
 
-export const NextQueue = ({ next }: NextQueueProps) => {
+export const NextQueue = memo(({ next }: NextQueueProps) => {
   const { theme } = useTheme();
   const colors = themeConfig[theme];
 
@@ -21,4 +22,4 @@ export const NextQueue = ({ next }: NextQueueProps) => {
       </ol>
     </div>
   );
-}
+});

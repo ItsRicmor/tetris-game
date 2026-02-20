@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import type { Game } from "@/packages/tetris-engine/src";
 
-export function useGameLoop(game: Game, onUpdate: () => void) {
+export const useGameLoop = (game: Game, onUpdate: () => void) => {
   const rafRef = useRef<number | null>(null);
   const lastRef = useRef<number | null>(null);
 

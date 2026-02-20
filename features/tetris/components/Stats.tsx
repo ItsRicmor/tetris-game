@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useTheme, themeConfig } from "../context/ThemeContext";
 
 interface StatsProps {
@@ -7,7 +8,7 @@ interface StatsProps {
   lines: number;
 }
 
-export const Stats = ({ status, score, level, lines }: StatsProps) => {
+export const Stats = memo(({ status, score, level, lines }: StatsProps) => {
   const { theme } = useTheme();
   const colors = themeConfig[theme];
 
@@ -33,4 +34,4 @@ export const Stats = ({ status, score, level, lines }: StatsProps) => {
       </div>
     </div>
   );
-}
+});

@@ -1,0 +1,39 @@
+{
+  "name": "Tetris Game",
+  "short_name": "Tetris",
+  "description": "Classic block-stacking puzzle game with modern controls",
+  "start_url": "/tetris",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "apple touch icon"
+    }
+  ],
+  "categories": ["games", "entertainment"],
+  "shortcuts": [
+    {
+      "name": "Play Tetris",
+      "short_name": "Play",
+      "description": "Start playing Tetris",
+      "url": "/tetris",
+      "icons": [{ "src": "/icon", "sizes": "32x32" }]
+    }
+  ]
+}
