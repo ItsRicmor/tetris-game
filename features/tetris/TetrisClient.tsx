@@ -54,9 +54,9 @@ const TetrisClientContent = () => {
 
   if (isMobile) {
     return (
-      <div className={`min-h-screen ${colors.bg} flex flex-col p-3`}>
-        <div className="flex-1 flex flex-col items-center justify-center gap-3">
-          <div className="flex gap-2 w-full max-w-md">
+      <div className={`min-h-screen ${colors.bg} flex flex-col p-2`}>
+        <div className="flex-1 flex flex-col items-center justify-center gap-2">
+          <div className="flex gap-1.5 w-full max-w-md">
             <HoldDisplay hold={snap.hold} canHold={snap.canHold} />
             <Stats
               status={snap.status}
@@ -71,7 +71,7 @@ const TetrisClientContent = () => {
           <GameStatus status={snap.status} />
         </div>
 
-        <div className="pb-safe">
+        <div className="pb-2">
           <TouchControls game={game} onUpdate={updateSnapshot} />
         </div>
       </div>

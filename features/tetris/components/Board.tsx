@@ -29,7 +29,7 @@ export const Board = ({ snap }: BoardProps) => {
       cells.push(
         <div
           key={key}
-          className={`w-5 h-5 sm:w-6 sm:h-6 border ${
+          className={`w-6 h-6 md:w-7 md:h-7 border ${
             filled ? colors.block : colors.blockEmpty
           } ${colors.boardBorder}`}
         />

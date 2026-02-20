@@ -38,11 +38,11 @@ export const TouchControls = ({ game, onUpdate }: TouchControlsProps) => {
     onUpdate();
   };
 
-  const buttonClass = `${colors.card} ${colors.border} border rounded-lg p-4 active:scale-95 transition-transform font-semibold ${colors.text}`;
+  const buttonClass = `${colors.card} ${colors.border} border rounded-md p-3 active:scale-95 transition-transform font-semibold ${colors.text}`;
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-4 gap-1.5">
         <button
           onTouchStart={() => handleAction("hold")}
           className={`${buttonClass} col-span-2 text-sm`}
